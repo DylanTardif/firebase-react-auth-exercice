@@ -18,12 +18,12 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDPGF9SpRb0puJFsG4HkjIVYfUGYM5od74",
-  authDomain: "w5-2022-auth-1.firebaseapp.com",
-  projectId: "w5-2022-auth-1",
-  storageBucket: "w5-2022-auth-1.appspot.com",
-  messagingSenderId: "76564686321",
-  appId: "1:76564686321:web:849da255a8ef133cbe5050",
+  apiKey: "AIzaSyAcZH3DBydxx1WbQfP7_A3Lu_qCt94Oev0",
+  authDomain: "authentication-63ed1.firebaseapp.com",
+  projectId: "authentication-63ed1",
+  storageBucket: "authentication-63ed1.appspot.com",
+  messagingSenderId: "515651870260",
+  appId: "1:515651870260:web:c175bea9d75b9515af7461",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -34,7 +34,9 @@ const googleProvider = new GoogleAuthProvider();
 
 const signInWithGoogle = async () => {
   try {
-    const res = //À faire. hint: signInWithPopup
+    //À faire. hint: signInWithPopup
+    const res = await signInWithPopup(auth, googleProvider);
+    //À faire. hint: signInWithPopup
     const user = res.user;
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
@@ -55,6 +57,8 @@ const signInWithGoogle = async () => {
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     //À faire. hint: signInWithEmailAndPassword
+    await signInWithEmailAndPassword(auth, email, password);
+    //À faire. hint: signInWithEmailAndPassword
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -63,7 +67,9 @@ const logInWithEmailAndPassword = async (email, password) => {
 
 const registerWithEmailAndPassword = async (name, email, password) => {
   try {
-    const res = //À faire. hint: createUserWithEmailAndPassword
+    //À faire. hint: createUserWithEmailAndPassword
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    //À faire. hint: createUserWithEmailAndPassword
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
@@ -79,6 +85,8 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 
 const sendPasswordReset = async (email) => {
   try {
+    //À faire. hint: sendPasswordResetEmail
+    await sendPasswordResetEmail(auth, email);
     //À faire. hint: sendPasswordResetEmail
     alert("Password reset link sent!");
   } catch (err) {

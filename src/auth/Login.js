@@ -41,7 +41,12 @@ function Login() {
         >
           Login
         </button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
+        <button
+          className="login__btn login__google"
+          onClick={async () => {
+            await signInWithGoogle();
+          }}
+        >
           Login with Google
         </button>
         <div>
